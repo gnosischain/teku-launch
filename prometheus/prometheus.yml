@@ -1,0 +1,12 @@
+global:
+    scrape_interval: 15s
+
+    external_labels:
+        monitor: 'teku-docker'
+
+scrape_configs:
+    - job_name: 'local-teku'
+      scrape_interval: 5s
+      file_sd_configs:
+          - files:
+              - '/prometheus/targets/scrape-targets.json'

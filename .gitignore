@@ -1,0 +1,6 @@
+.idea/
+keys/validator_keys/*
+keys/passwords/*
+.env
+node_db
+validators
