@@ -4,3 +4,4 @@ keys/passwords/*
 .env
 node_db
 validators
+config/slashing_protection.json
