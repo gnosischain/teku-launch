@@ -1,7 +1,7 @@
 version: '3.8'
 services:
   node:
-    image: consensys/teku:22.5.0
+    image: consensys/teku:22.5.1
     hostname: node
     restart: always
     user: root
@@ -19,7 +19,9 @@ services:
       --initial-state=$GBC_RPC_URL/eth/v2/debug/beacon/states/finalized
       --logging=$LOG_LEVEL
       --validator-keys=/opt/teku/keys/validator_keys:/opt/teku/keys/passwords
-      --validators-graffiti=${OVERRIDE_GRAFFITI:-Teku/v22.5.0-8f80286}
+      --validators-graffiti=${OVERRIDE_GRAFFITI:-Teku/v22.5.1-8f97fa5}
+    environment:
+      JAVA_OPTS: "-Dteku.portableBlst=false"
     ports:
       - '12000:12000/udp'
       - '13000:13000'
@@ -30,7 +32,7 @@ services:
       driver: syslog
       options: { tag: '{{.Name}}/{{.ID}}' }
   validator-import-slashing-protection:
-    image: consensys/teku:22.5.0
+    image: consensys/teku:22.5.1
     user: root
     command: |
       slashing-protection import
@@ -45,7 +47,7 @@ services:
         max-size: "100m"
         max-file: "1"
   validator-export-slashing-protection:
-    image: consensys/teku:22.5.0
+    image: consensys/teku:22.5.1
     user: root
     command: |
       slashing-protection export
